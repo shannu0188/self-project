@@ -36,7 +36,7 @@ pipeline {
             steps {
                 script {
                     sh "docker rm -f ${SHANNU} || true"
-                    sh "docker run -d -p 3000:3000 --name ${SHANNU} ${SHANNU}:latest"
+                    sh "docker run -d -p 3000:3000 --name ${myapp-container} ${SHANNU}:latest"
                 }
             }
         }
