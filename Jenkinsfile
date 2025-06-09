@@ -10,14 +10,14 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/YourUserName/your-repo-name.git'
+                git 'https://github.com/shannu0188/self-project.git'
             }
         }
 
         stage('Build Docker Image') {
             steps {
                 script {
-                    docker.build("${IMAGE_NAME}:latest")
+                    docker.build("${SHANNU}:latest")
                 }
             }
         }
@@ -26,7 +26,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://index.docker.io/v1/', "${DOCKER_CREDENTIALS_ID}") {
-                        docker.image("${IMAGE_NAME}:latest").push()
+                        docker.image("${SHANNU}:latest").push()
                     }
                 }
             }
@@ -35,8 +35,8 @@ pipeline {
         stage('Run Container') {
             steps {
                 script {
-                    sh "docker rm -f ${CONTAINER_NAME} || true"
-                    sh "docker run -d -p 3000:3000 --name ${CONTAINER_NAME} ${IMAGE_NAME}:latest"
+                    sh "docker rm -f ${SHANNU} || true"
+                    sh "docker run -d -p 3000:3000 --name ${SHANNU} ${SHANNU}:latest"
                 }
             }
         }
